@@ -8,23 +8,45 @@
 </head>
 <body>
     <div id="root">
+        <div v-if="b">{{b}}는?</div>
+        <div v-if="b">-----------?</div>
+
+        <div v-if="c">{{c}}는?성공작이래</div>
+        <div v-else>{{c}}는?실패작이래</div>
+
+        <button v-on:click="gd">버튼이에용</button>
+
         <div>{{first}} 곱하기 {{second}}는?</div>
         <form v-on:submit="onSubmitForm">
             <input type="text" ref="answer" v-model="value">
             <button type="submit">입력</button>
         </form>
         <div id="result">{{result}}</div>
+        <div >{{value}}gd</div>
+    </div>
+    <div>
+        <div v-if="b">{{b}}는?</div>
     </div>
     <script>
         const app = new Vue({
             el : '#root',
             data : {
+                a : false,
+                b : true,
+                c : false,
                 first: Math.ceil(Math.random()*9),
                 second: Math.ceil(Math.random()*9),
                 value:'',
                 result:'',
             },
             methods:{
+                gd(){
+                    if(this.c){
+                    this.c = false;
+                }else{
+                    this.c = true;
+                }
+                },
                 onSubmitForm(e){
                     e.preventDefault(); //페이지 새로고침 막음
                     if(this.first * this.second === parseInt(this.value)){
